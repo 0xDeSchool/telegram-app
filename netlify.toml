@@ -1,0 +1,126 @@
+[build.environment]
+NODE_OPTIONS = "--max_old_space_size=8192"
+
+[dev]
+targetPort = 3000
+
+[[plugins]]
+package = "/netlify/plugins/api-proxy"
+
+[[edge_functions]]
+path = "/*/studio/*"
+function = "botmeta"
+
+[[edge_functions]]
+path = "/*/series/seriesintro/*"
+function = "botmeta"
+
+[[edge_functions]]
+path = "/*/series/*/learning"
+function = "botmeta"
+
+[[edge_functions]]
+path = "/*/campaign"
+function = "botmeta"
+
+[[edge_functions]]
+path = "/*/campaign/*"
+function = "botmeta"
+
+[[edge_functions]]
+path = "/u/*"
+function = "botmeta"
+
+[[edge_functions]]
+path = "/*/toolsets"
+function = "botmeta"
+
+[[edge_functions]]
+path = "/*/toolsets/*"
+function = "botmeta"
+
+[[edge_functions]]
+path = "/*/agi"
+function = "botmeta"
+
+[[edge_functions]]
+path = "/*/agi/*"
+function = "botmeta"
+
+[[redirects]]
+from = "/apiDevelopment/*"
+to = "http://dev.node-api.deschool.app:8001/api/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/apiStaging/*"
+to = "http://stg.node-api.deschool.app:8000/api/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/apiProduction/*"
+to = "http://node-api.deschool.app/api/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/goapiDevelopment/*"
+to = "http://54.86.174.62:8003/api/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/goapiStaging/*"
+to = "https://stg.api.deschool.app/api/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/goapiProduction/*"
+to = "http://api.deschool.app/api/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/goapiBoothPrd/*"
+to = "http://ec2-54-211-102-5.compute-1.amazonaws.com:80/api/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/mypinata/*"
+to = "https://deschool.mypinata.cloud/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/spaceApi/*"
+to = "https://api.prd.space.id/:splat"
+status = 200
+force = true
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[[headers]]
+for = "/manifest.webmanifest"
+[headers.values]
+Content-Type = "application/manifest+json"
+
+[[headers]]
+for = "/assets/*"
+[headers.values]
+cache-control = '''
+    max-age=31536000,
+    immutable
+    '''
+
+[[headers]]
+for = "/*"
+[headers.values]
+Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+X-Frame-Options = "DENY"

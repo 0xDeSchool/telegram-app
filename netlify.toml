@@ -4,49 +4,6 @@ NODE_OPTIONS = "--max_old_space_size=8192"
 [dev]
 targetPort = 3000
 
-[[plugins]]
-package = "/netlify/plugins/api-proxy"
-
-[[edge_functions]]
-path = "/*/studio/*"
-function = "botmeta"
-
-[[edge_functions]]
-path = "/*/series/seriesintro/*"
-function = "botmeta"
-
-[[edge_functions]]
-path = "/*/series/*/learning"
-function = "botmeta"
-
-[[edge_functions]]
-path = "/*/campaign"
-function = "botmeta"
-
-[[edge_functions]]
-path = "/*/campaign/*"
-function = "botmeta"
-
-[[edge_functions]]
-path = "/u/*"
-function = "botmeta"
-
-[[edge_functions]]
-path = "/*/toolsets"
-function = "botmeta"
-
-[[edge_functions]]
-path = "/*/toolsets/*"
-function = "botmeta"
-
-[[edge_functions]]
-path = "/*/agi"
-function = "botmeta"
-
-[[edge_functions]]
-path = "/*/agi/*"
-function = "botmeta"
-
 [[redirects]]
 from = "/apiDevelopment/*"
 to = "http://dev.node-api.deschool.app:8001/api/:splat"
